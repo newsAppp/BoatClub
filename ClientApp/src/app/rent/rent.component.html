@@ -1,0 +1,52 @@
+<div class="row mt-5 m-2">
+    <h4>Rent Boat</h4>
+</div>
+<div>
+    <form [formGroup]="rentForm" (ngSubmit)="rent()" class="form-inline m-2 my-2 my-lg-0">
+        <div *ngIf="rentForm.errors?.register" class="error-panel help-block">
+            {{rentForm.errors.register}}
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error has-feedback' : regHasError('BoatId') }">
+            <input formControlName="BoatId" class="form-control mr-sm-2" type="text" placeholder="BoatId"
+                aria-label="BoatId">
+            <span *ngIf="regHasError('BoatId')" class="glyphicon glyphicon-remove form-control-feedback"
+                aria-hidden="true"></span>
+            <div *ngIf="regHasError('BoatId')" class="help-block">Please insert a valid Boat Number.</div>
+        </div>
+
+        <div class="form-group" [ngClass]="{ 'has-error has-feedback' : regHasError('CustomerName') }">
+            <input formControlName="CustomerName" class="form-control mr-sm-2" type="text" placeholder="Customer Name"
+                aria-label="CustomerName">
+            <span *ngIf="regHasError('CustomerName')" class="glyphicon glyphicon-remove form-control-feedback"
+                aria-hidden="true"></span>
+            <div *ngIf="regHasError('CustomerName')" class="help-block">Please insert a valid Customer Name.</div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit" [disabled]="rentForm.invalid">register</button>
+        </div>
+
+    </form>
+</div>
+
+<div class="row m-2">
+    <h4>Return Boat</h4>
+</div>
+<div>
+    <form [formGroup]="returnForm" (ngSubmit)="return()" class="form-inline m-2 my-2 my-lg-0">
+        <div *ngIf="returnForm.errors?.register" class="error-panel help-block">
+            {{returnForm.errors.register}}
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error has-feedback' : hasError('BoatNumber') }">
+            <input formControlName="BoatNumber" class="form-control mr-sm-2" type="text" placeholder="BoatNumber"
+                aria-label="BoatNumber">
+            <span *ngIf="hasError('BoatNumber')" class="glyphicon glyphicon-remove form-control-feedback"
+                aria-hidden="true"></span>
+
+        </div>
+        <div class="form-group">
+            <button [disabled]="returnForm.invalid" class="btn btn-secondary my-2 my-sm-0" type="submit">remove</button>
+        </div>
+        <div *ngIf="hasError('BoatNumber')" class="help-block">Please insert a valid boat number.</div>
+    </form>
+</div>

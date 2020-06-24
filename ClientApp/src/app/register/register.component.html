@@ -1,0 +1,55 @@
+<div class="row mt-5 m-2">
+  <h4>Register Boat</h4>
+</div>
+<div>
+  <form [formGroup]="regForm" (ngSubmit)="register()" class="form-inline m-2 my-2 my-lg-0">
+    <div *ngIf="form.errors?.register" class="error-panel help-block">
+      {{form.errors.register}}
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error has-feedback' : regHasError('Id') }">
+      <input  formControlName="Id" class="form-control mr-sm-2" type="text" placeholder="Id" aria-label="Id">
+      <span *ngIf="regHasError('Id')" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+      <div *ngIf="regHasError('Id')" class="help-block">Please insert a valid Boat Number.</div>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error has-feedback' : regHasError('Name') }">
+      <input formControlName="Name" class="form-control mr-sm-2" type="text" placeholder="Customer Name" aria-label="Name">
+      <span *ngIf="regHasError('Name')" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+      <div *ngIf="regHasError('Name')" class="help-block">Please insert a valid Customer Name.</div>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error has-feedback' : regHasError('HourlyRate') }">
+      <input formControlName="HourlyRate" class="form-control mr-sm-2" type="text" placeholder="Hourly rate" aria-label="HourlyRate">
+      <span *ngIf="regHasError('HourlyRate')" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+      <div *ngIf="regHasError('HourlyRate')" class="help-block">Please insert a valid Hourly Rate.</div>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error has-feedback' : regHasError('Image') }">
+      <input formControlName="Image" class="form-control mr-sm-2" type="file" accept="image/*" placeholder="Image" aria-label="Image">
+      <span *ngIf="regHasError('Image')" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+      <div *ngIf="regHasError('Image')" class="help-block">Please insert a valid Image.</div>
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit" [disabled]="regForm.invalid">register</button>
+    </div>
+
+  </form>
+</div>
+
+<div class="row m-2">
+  <h4>Remove Boat</h4>
+</div>
+<div>
+  <form [formGroup]="form" (ngSubmit)="remove()" class="form-inline m-2 my-2 my-lg-0">
+    <div class="form-group" [ngClass]="{ 'has-error has-feedback' : hasError('BoatNumber') }">
+      <input  formControlName="BoatNumber" class="form-control mr-sm-2" type="text" placeholder="BoatNumber" aria-label="BoatNumber">
+      <span *ngIf="hasError('BoatNumber')" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+      
+    </div>
+    <div class="form-group">
+      <button [disabled]="form.invalid" class="btn btn-secondary my-2 my-sm-0" type="submit">remove</button>
+    </div>
+    <div *ngIf="hasError('BoatNumber')" class="help-block">Please insert a valid boat number.</div>
+  </form>
+</div>
